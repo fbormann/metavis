@@ -5,7 +5,7 @@ services:
    networks:
      - main
    volumes:
-     - .:/app
+     - ./:/app
    environment:
      - DEBUG=0
      - SECRET_KEY=testing
