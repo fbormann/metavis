@@ -4,8 +4,6 @@ FROM continuumio/miniconda3:latest
 ARG environment_file=environment_files/dev_environment.yml
 ENV TEST_VARIABLE=development
 
-RUN groupadd -r myuser && useradd -r -g myuser myuser
-
 WORKDIR /app
 
 # set environment varibles
@@ -21,10 +19,8 @@ RUN conda config --add channels conda-forge \
 COPY guaraci guaraci
 
 COPY . /app/
-RUN chown -R myuser:myuser /app/*
 
 ENV PATH /opt/conda/envs/myapp/bin:$PATH
-RUN python manage.py collectstatic --noinput
 
 EXPOSE 8001
 COPY ./entrypoint.sh /
